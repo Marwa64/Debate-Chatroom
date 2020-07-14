@@ -1,0 +1,24 @@
+{
+  "name": "DebateChatroom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "usemin": "usemin index.html -d dist --htmlmin -o dist/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "cssmin": "^0.4.3",
+    "express": "^4.17.1",
+    "htmlmin": "0.0.7",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "socket.io": "^2.3.0",
+    "uglifyjs": "^2.4.11",
+    "usemin-cli": "^0.6.0"
+  }
+}
