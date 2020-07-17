@@ -1,7 +1,33 @@
+<!-- 'Instructions' collapsable card -->
+<div class="container">
+  <div class="accordion" id="accordion">
+    <div class="row">
+      <div class="col-12 col-sm-10 offset-sm-1">
+        <div class="card">
+          <div class="card-header">
+              <button type="button" class="btn btn-block text-white" data-toggle="collapse" data-target="#instructions"><h2> Instructions </h2></button>
+          </div>
+
+          <div id="instructions" class="collapse hide">
+            <div class="card-body">
+              <ul>
+                <li>There are 2 debaters: <span class="text-red">Red</span> and <span class="text-blue">Blue</span></li>
+                <li>The <span class="text-red">Red</span> debater has to argue <b>against</b> the topic, while the <span class="text-blue">Blue</span> debater has to argue <b>for</b> the topic</li>
+                <li>The <span class="text-green">Judge</span> will decided which debater wins at the end of the time based on the points made by either side</li>
+                <li>If any debater or judge doesn't like the topic, they can press pass</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-12 col-sm-10 offset-sm-1">
-      <div class="card">
+      <div class="card chat">
         <div class="card-header">
           <div class="card-title">
             <h2> Topic: </h2>
@@ -18,12 +44,21 @@
                 <input type="text" class="form-control" placeholder="Enter your message">
               </div>
               <div class="col-3">
-                <button type="button" class="btn btn-warning btn-block startBtn" id="sendBtn">Send</button>
+                <button type="button" class="btn btn-warning btn-block btnFont" id="sendBtn">Send</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pass Button -->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <button type="button" class="btn btn-block btnFont passBtn">Pass</button>
     </div>
   </div>
 </div>

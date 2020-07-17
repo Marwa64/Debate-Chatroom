@@ -1,7 +1,5 @@
 let socket;
 
-
-
 function loadChat() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {

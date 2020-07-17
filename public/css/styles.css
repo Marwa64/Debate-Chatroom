@@ -6,6 +6,19 @@ body{
   width: 100%;
   height: 100%;
 }
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: #776fc6;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+
 .jumbotron{
   margin-top: 25px;
   background-color: #ffffff00;
@@ -23,7 +36,7 @@ h4{
   font-size: 25px;
   text-align: center;
 }
-.startBtn{
+.btnFont{
   font-weight: bold;
   font-family: 'Merienda One', cursive;
 }
@@ -45,13 +58,15 @@ img{
 }
 
 .card{
-  height: 500px;
-  background-color: white;
-  margin-top: 150px;
-  display: block;
+  margin-top: 100px;
   border-radius: 10px;
+  background-color: #ccc5ff;
+}
+.chat{
+  margin-top: 80px;
+  height: 500px;
+  display: block;
   box-shadow: 5px 5px 8px 5px #00000040, -5px 5px 30px 5px #0000008f;
-  background-color: #dedafb;
 }
 /*background: linear-gradient(to bottom right, #c8c0ff,#837bff);*/
 .card-header:first-child{
@@ -59,7 +74,6 @@ img{
   border-radius: 10px;
   color: white;
   text-align: center;
-  border: 2px solid #c8c0ff;
   font-family: 'Merienda One', cursive;
 }
 .messageInput{
@@ -77,6 +91,17 @@ img{
   overflow-y: auto;
   height: 21rem;
 }
+.messagesBox::-webkit-scrollbar {
+  width: 5px;
+}
+.messagesBox::-webkit-scrollbar-track {
+  background: #ccc5ff;
+}
+
+.messagesBox::-webkit-scrollbar-thumb {
+  background: #000000bd;
+  border-radius: 10px;
+}
 .message{
   padding: 10px;
   margin-bottom: 7px;
@@ -86,3 +111,29 @@ img{
 }
 /*blue: #9bc7f1
   red: #f99999*/
+
+.passBtn{
+  background: linear-gradient(to bottom right, #c2baff,#3f33ff);
+  color: white;
+  font-size: 20px;
+  border: 1px solid #a79bff;
+  margin-bottom: 25px;
+}
+.passBtn:hover{
+  transform: scale(1.05);
+  background: linear-gradient(to bottom left, #c2baff,#3f33ff);
+}
+.text-blue{
+  color: blue;
+}
+.text-red{
+  color: red;
+}
+.text-green{
+  color: green;
+}
+li{
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  font-weight: 400;
+}
