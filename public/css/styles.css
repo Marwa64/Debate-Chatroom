@@ -137,3 +137,10 @@ li{
   font-size: 18px;
   font-weight: 400;
 }
+.judge{
+  text-align: center;
+  font-size: 23px;
+  font-family: 'Merienda One', cursive;
+  color: #11008e;
+  margin-left: -15px;
+}
