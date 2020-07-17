@@ -51,14 +51,38 @@ img{
   display: block;
   border-radius: 10px;
   box-shadow: 5px 5px 8px 5px #00000040, -5px 5px 30px 5px #0000008f;
+  background-color: #dedafb;
 }
+/*background: linear-gradient(to bottom right, #c8c0ff,#837bff);*/
 .card-header:first-child{
-  background: linear-gradient(to bottom right, #c8c0ff,#837bff);
+  background-color: #000000bd;
   border-radius: 10px;
   color: white;
   text-align: center;
-  border-bottom: 1px solid black;
+  border: 2px solid #c8c0ff;
+  font-family: 'Merienda One', cursive;
 }
-.card-body{
-  background-color: #f0eeff;
+.messageInput{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+  width: 100%;
 }
+#messageRow{
+  width: 100%;
+}
+.messagesBox{
+  position: relative;
+  display: block;
+  overflow-y: auto;
+  height: 21rem;
+}
+.message{
+  padding: 10px;
+  margin-bottom: 7px;
+  width: 70%;
+  background-color: #f99999;
+  border-radius: 10px;
+}
+/*blue: #9bc7f1
+  red: #f99999*/

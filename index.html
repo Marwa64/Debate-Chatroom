@@ -3,9 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- build:css public/css/bootstrap.css -->
-    <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
-    <!-- endbuild -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css2?family=Merienda+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
@@ -13,34 +10,31 @@
     <title>Debate Chatroom</title>
   </head>
   <body>
-    <div class="jumbotron">
+    <div class="main">
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row row-header">
+            <div class="col-12">
+              <h1>Debate Chatroom</h1>
+            </div>
+            <div class="col-12">
+              <h4>Given a random topic, could you talk your way into winning the debate?</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <img class="d-none d-lg-inline" id="img1" src="img/debate-girl.svg" width="400" height="570">
+      <img class="d-none d-lg-inline" id="img2" src="img/debate-guy.svg" width="310" height="520">
+
       <div class="container">
-        <div class="row row-header">
-          <div class="col-12">
-            <h1>Debate Chatroom</h1>
-          </div>
-          <div class="col-12">
-            <h4>Given a random topic, could you talk your way into winning the debate?</h4>
+        <div class="row row-content">
+          <div class="offset-1 col-10 offset-sm-4 col-sm-4">
+            <button type="button" id="startBtn" class="btn btn-warning btn-block" onclick="loadChat()"><span class="startBtn">Start Debating</span></button>
           </div>
         </div>
       </div>
     </div>
-
-    <img class="d-none d-lg-inline" id="img1" src="img/debate-girl.svg" width="400" height="570">
-    <img class="d-none d-lg-inline" id="img2" src="img/debate-guy.svg" width="310" height="520">
-
-    <div class="container">
-      <div class="row row-content">
-        <div class="offset-1 col-10 offset-sm-4 col-sm-4">
-          <button type="button" id="startBtn" class="btn btn-warning btn-block" onclick="loadChat()"><span class="startBtn">Start Debating</span></button>
-        </div>
-      </div>
-    </div>
-    <!-- build:js public/js/bootstrap.js -->
-    <!-- <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
-    <!-- endbuild -->
     <script src = "/socket.io/socket.io.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/main.js"></script>
