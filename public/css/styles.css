@@ -30,7 +30,7 @@ h1{
   font-weight: 900;
   text-align: center;
 }
-h4{
+.catchPhrase{
   margin-top: 20px;
   font-family: 'Dancing Script', cursive;
   font-size: 25px;

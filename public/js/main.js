@@ -39,7 +39,9 @@ function joinRoom(){
     }
   });
 
-  socket.on('start', () => {
+  socket.on('start', data => {
+    let topic = document.querySelector("#topic");
+    topic.innerText = "Topic: " + data.topic;
     let messageInput = document.body.querySelector(".messageInput");
     if (thisRole != "judge"){
       messageInput.innerHTML = "<div id='messageRow' class='row'><div class='col-9'><input type='text' class='form-control' placeholder='Enter your message'></div><div class='col-3'><button type='button' class='btn btn-warning btn-block btnFont' id='sendBtn'>Send</button></div></div>";
