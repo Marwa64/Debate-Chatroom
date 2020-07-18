@@ -112,16 +112,23 @@ img{
 /*blue: #9bc7f1
   red: #f99999*/
 
-.passBtn{
+.activeBtn{
   background: linear-gradient(to bottom right, #c2baff,#3f33ff);
   color: white;
   font-size: 20px;
   border: 1px solid #a79bff;
   margin-bottom: 25px;
 }
-.passBtn:hover{
+.activeBtn:hover{
   transform: scale(1.05);
   background: linear-gradient(to bottom left, #c2baff,#3f33ff);
+}
+.unactiveBtn{
+  background: grey;
+  color: white;
+  font-size: 20px;
+  border: 1px solid #a79bff;
+  margin-bottom: 25px;
 }
 .text-blue{
   color: blue;
