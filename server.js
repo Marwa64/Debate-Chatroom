@@ -12,27 +12,44 @@ app.get('/', (req, res) => {
 let roomNum = 0, clientNum = 0, role="";
 io.on('connection', socket => {
   console.log("A user connected " + clientNum);
-  // We're inceasing the room number if there are 3 people in the room
-  if(io.nsps['/'].adapter.rooms["room-"+roomNum] && io.nsps['/'].adapter.rooms["room-"+roomNum].length == 3){
+
+  if (clientNum > 2){
     roomNum++;
     clientNum = 0;
     console.log("New room!");
   }
-  socket.join("room-" + roomNum);
   if (clientNum === 0){
     role = "judge";
+    clientNum++;
   } else if (clientNum === 1){
-    role = "red";
+    role = "Red";
+    clientNum++;
   } else if (clientNum === 2){
-    role = "blue";
-  }
-  clientNum++;
+    role = "Blue";
+    clientNum++;
+    io.sockets.in("room-"+roomNum).emit('start', "");
+    socket.emit('start', "");
+  } 
+  socket.join("room-" + roomNum);
   socket.emit('role', {role: role, room: roomNum});
 
   socket.on('message', data => {
-    console.log(data.role);
     io.sockets.in("room-"+data.room).emit('newMessage', {role: data.role, message: data.message});
   });
+
+  socket.on('pass', data => {
+    io.sockets.in("room-"+data.room).emit('playerLeave', {role: data.role});
+    socket.leave("room-" + data.room);
+  });
+
+  socket.on('typing', data => {
+    io.sockets.in("room-"+data.room).emit('playerTyping', {role: data.role});
+  });
+
+  socket.on('notTyping', data => {
+    io.sockets.in("room-"+data.room).emit('playerNotTyping', {role: data.role});
+  });
+
   socket.on('disconnect', () => {
     console.log("A user disconnected");
   })

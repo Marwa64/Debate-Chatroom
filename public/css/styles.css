@@ -89,7 +89,7 @@ img{
   position: relative;
   display: block;
   overflow-y: auto;
-  height: 21rem;
+  height: 20rem;
 }
 .messagesBox::-webkit-scrollbar {
   width: 5px;
@@ -143,4 +143,8 @@ li{
   font-family: 'Merienda One', cursive;
   color: #11008e;
   margin-left: -15px;
+}
+.typing{
+  font-family: 'Dancing Script', cursive;
+  font-size: 21px;
 }
