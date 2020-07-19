@@ -189,6 +189,6 @@ li{
 
 @media screen and (max-width: 600px) {
   .messagesBox{
-    height: 17rem;
+    height: 16rem;
   }
 }

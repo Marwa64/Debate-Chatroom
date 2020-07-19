@@ -52,12 +52,12 @@ function joinRoom(){
   });
 
   socket.on('start', data => {
-    minutes=4;
-    seconds=59;
+    minutes=0;
+    seconds=20;
     topic.innerText = "Topic: " + data.topic;
     let messageInput = document.body.querySelector(".messageInput");
     if (thisRole != "judge"){
-      messageInput.innerHTML = "<div id='messageRow' class='row'><div class='col-9'><input type='text' id='userMessage' class='form-control' placeholder='Enter your message'></div><div class='col-3'><button type='button' class='btn btn-warning btn-block btnFont' id='sendBtn'>Send</button></div></div>";
+      messageInput.innerHTML = "<div id='messageRow' class='row'><div class='col-8 col-sm-9'><input type='text' id='userMessage' class='form-control' placeholder='Enter your message'></div><div class='col-4 col-sm-3'><button type='button' class='btn btn-warning btn-block btnFont' id='sendBtn'>Send</button></div></div>";
       let sendBtn = document.querySelector("#sendBtn");
       sendBtn.addEventListener('click', () => {
         createMessage();
