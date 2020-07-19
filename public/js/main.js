@@ -52,8 +52,8 @@ function joinRoom(){
   });
 
   socket.on('start', data => {
-    minutes=0;
-    seconds=20;
+    minutes=4;
+    seconds=59;
     topic.innerText = "Topic: " + data.topic;
     let messageInput = document.body.querySelector(".messageInput");
     if (thisRole != "judge"){
