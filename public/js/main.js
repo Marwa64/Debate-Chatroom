@@ -1,4 +1,4 @@
-let socket, room, thisRole, opponentRole, debatee1, debatee2, topic, minutes=4, seconds=59;
+let socket, room, thisRole, opponentRole, debatee1, debatee2, topic, minutes=9, seconds=59;
 let typingContainer, timerContainer;
 
 //$(".modal").modal("show");
@@ -21,7 +21,7 @@ function joinRoom(){
   socket = io();
 
   let time = document.querySelector("#timer");
-  time.innerText = "5:00";
+  time.innerText = "10:00";
 
   topic = document.querySelector("#topic");
   topic.innerText = "Topic: ";
@@ -52,7 +52,7 @@ function joinRoom(){
   });
 
   socket.on('start', data => {
-    minutes=4;
+    minutes=9;
     seconds=59;
     topic.innerText = "Topic: " + data.topic;
     let messageInput = document.body.querySelector(".messageInput");
