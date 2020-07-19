@@ -115,6 +115,11 @@ io.on('connection', socket => {
     io.sockets.in("room-"+data.room).emit('newMessage', {role: data.role, message: data.message});
   });
 
+  socket.on('vote', data => {
+    console.log(data.reason);
+    io.sockets.in("room-"+data.room).emit('results', {reason: data.reason, winner: data.winner});
+  })
+
   socket.on('pass', data => {
     socket.leave("room-" + data.room);
     socket.emit('playerLeave', {role: data.role});

@@ -10,6 +10,40 @@
     <title>Debate Chatroom</title>
   </head>
   <body>
+    <div class="modal fade" data-backdrop="static">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+              <div class="row justify-content-center">
+                <h2 class="text-white">Vote</h2>
+              </div>
+              <div class="row justify-content-center mt-4">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-danger active vote">
+                    <input type="radio" id="redOption" value="Red" checked> Red
+                  </label>
+                  <label class="btn btn-primary vote">
+                    <input type="radio" id="blueOption" value="Blue"> Blue
+                  </label>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-10 offset-1">
+                  <textarea rows="4" id="reason" class="form-control" placeholder="Enter your reason"></textarea>
+                </div>
+              </div>
+              <div class="row mt-3 ">
+                <div class="col-4 offset-4">
+                  <button type="button" class="btn btn-warning btn-block" onclick="vote()"><b>Submit<b></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="main">
       <div class="jumbotron">
         <div class="container">

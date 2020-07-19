@@ -1,4 +1,7 @@
-let socket, room, thisRole, opponentRole, debatee1, debatee2;
+let socket, room, thisRole, opponentRole, debatee1, debatee2, topic, minutes=4, seconds=59;
+let typingContainer, timerContainer;
+
+//$(".modal").modal("show");
 
 function loadChat() {
   var xhttp = new XMLHttpRequest();
@@ -17,7 +20,16 @@ function loadChat() {
 function joinRoom(){
   socket = io();
 
+  let time = document.querySelector("#timer");
+  time.innerText = "5:00";
+
+  topic = document.querySelector("#topic");
+  topic.innerText = "Topic: ";
   thisRole = "";
+
+  // Clear messages
+  let box = document.body.querySelector(".messagesBox");
+  box.innerHTML = "";
 
   let messageInput = document.body.querySelector(".messageInput");
   messageInput.innerText = "Waiting for debaters to join..";
@@ -40,11 +52,12 @@ function joinRoom(){
   });
 
   socket.on('start', data => {
-    let topic = document.querySelector("#topic");
+    minutes=4;
+    seconds=59;
     topic.innerText = "Topic: " + data.topic;
     let messageInput = document.body.querySelector(".messageInput");
     if (thisRole != "judge"){
-      messageInput.innerHTML = "<div id='messageRow' class='row'><div class='col-9'><input type='text' class='form-control' placeholder='Enter your message'></div><div class='col-3'><button type='button' class='btn btn-warning btn-block btnFont' id='sendBtn'>Send</button></div></div>";
+      messageInput.innerHTML = "<div id='messageRow' class='row'><div class='col-9'><input type='text' id='userMessage' class='form-control' placeholder='Enter your message'></div><div class='col-3'><button type='button' class='btn btn-warning btn-block btnFont' id='sendBtn'>Send</button></div></div>";
       let sendBtn = document.querySelector("#sendBtn");
       sendBtn.addEventListener('click', () => {
         createMessage();
@@ -62,8 +75,8 @@ function joinRoom(){
       messageInput.innerText = "You are the judge";
       messageInput.classList.add("judge");
     }
-
-    setInterval(checkTyping, 100);
+    timerContainer = setInterval(timer, 1000);
+    typingContainer = setInterval(checkTyping, 100);
   });
 
   socket.on('newMessage', data => {
@@ -117,6 +130,15 @@ function joinRoom(){
     }
   });
 
+  socket.on('results', data => {
+    results(data.reason);
+    disconnect();
+    let messageInput = document.body.querySelector(".messageInput");
+    messageInput.innerText = data.winner + " is the winner!";
+    messageInput.classList.add("judge");
+    socket.disconnect();
+  })
+
 }
 
 function pass(){
@@ -143,7 +165,7 @@ function join(){
   joinRoom();
 }
 
-function createMessage(text=document.querySelector("input").value, mine=true) {
+function createMessage(text=document.querySelector("#userMessage").value, mine=true) {
   if (text != ""){
     let message = document.createElement("div");
     message.innerText = text;
@@ -151,7 +173,7 @@ function createMessage(text=document.querySelector("input").value, mine=true) {
     if (mine){
       message.classList.add("mr-auto");
       message.style.background = thisRole;
-      document.querySelector("input").value="";
+      document.querySelector("#userMessage").value="";
       if (thisRole === "#f99999"){
         socket.emit('message', {room: room, role: "Red", message: text});
       } else if (thisRole === "#9bc7f1"){
@@ -183,6 +205,11 @@ function judgeMessages(color, text) {
 
 function disconnect() {
   console.log("pass");
+  clearInterval(timerContainer);
+  clearInterval(typingContainer);
+  // Clear typing
+  let typingBox = document.body.querySelector(".typing");
+  typingBox.innerText = "";
   // Activate Join debate button
   let joinBtn = document.body.querySelector("#joinBtn");
   joinBtn.addEventListener('click', join);
@@ -193,9 +220,6 @@ function disconnect() {
   passBtn.removeEventListener('click', pass);
   passBtn.classList.remove("activeBtn");
   passBtn.classList.add("unactiveBtn");
-  // Clear messages
-  let box = document.body.querySelector(".messagesBox");
-  box.innerHTML = "";
   // Declare that the debate is over
   let messageInput = document.body.querySelector(".messageInput");
   messageInput.innerText = "A player left, this debate is over.";
@@ -204,7 +228,7 @@ function disconnect() {
 
 function checkTyping(){
   if (thisRole != "judge" && thisRole != ""){
-    if (document.querySelector("input").value != ""){
+    if (document.querySelector("#userMessage").value != ""){
       if (thisRole === "#f99999"){
         socket.emit('typing', {room: room, role: "Red"});
       } else  if (thisRole === "#9bc7f1") {
@@ -218,4 +242,64 @@ function checkTyping(){
       }
     }
   }
+}
+
+function timer(){
+  let time = document.querySelector("#timer");
+  if (minutes === 0 && seconds === 0){
+    clearInterval(timerContainer);
+    let typingBox = document.body.querySelector(".typing");
+    typingBox.innerText = "";
+    if (thisRole === "judge"){
+      $(".modal").modal("show");
+    } else {
+      // Deactivate pass button
+      let passBtn = document.body.querySelector("#passBtn");
+      passBtn.removeEventListener('click', pass);
+      passBtn.classList.remove("activeBtn");
+      passBtn.classList.add("unactiveBtn");
+      // Inform users that the judge is voting
+      let messageInput = document.body.querySelector(".messageInput");
+      messageInput.innerText = "The Judge is voting";
+      messageInput.classList.add("judge");
+    }
+  } else {
+    if (seconds === 0){
+      minutes--;
+      seconds = 59;
+    } else {
+      seconds--;
+    }
+    if (seconds < 10){
+      time.innerText = `${minutes}:0${seconds}`;
+    } else {
+      time.innerText = `${minutes}:${seconds}`;
+    }
+  }
+}
+function results(reason){
+  console.log(reason);
+  if (reason === ""){
+    reason = "no reason mentioned";
+  }
+  let message = document.createElement("div");
+  message.innerText = reason;
+  message.classList.add("message");
+  message.classList.add("ml-auto");
+  message.style.background = "#a3e29a";
+  document.querySelector(".messagesBox").appendChild(message);
+  message.scrollIntoView();
+}
+
+function vote(){
+  $(".modal").modal("hide");
+  let reason = document.querySelector("#reason");
+  console.log(reason.value);
+  let winner;
+  if (document.querySelector("#blueOption").checked){
+    winner = "Blue";
+  } else if (document.querySelector("#redOption").checked){
+    winner = "Red";
+  }
+  socket.emit('vote', {room: room, reason: "Reason: " + reason.value, winner: winner});
 }
