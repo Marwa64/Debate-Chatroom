@@ -4,7 +4,7 @@ The red side has to argue against the topic, the blue side has to argue for the 
 
 Live Version: https://debate-chatroom.herokuapp.com/ <br>
 <h3>Screenshots</h3>
-	<img src="screenshots/debate1.jpg" width="750" height="600">
-	<img src="screenshots/debate2.jpg" width="750" height="600">
+	<img src="screenshots/debate1.jpg" width="750" height="550">
+	<img src="screenshots/debate2.jpg" width="750" height="550">
   <img src="screenshots/debate3.jpg" width="750" height="600">
-	<img src="screenshots/debate4.jpg" width="750" height="600">
+	<img src="screenshots/debate4.jpg" width="750" height="550">
