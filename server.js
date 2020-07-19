@@ -86,10 +86,7 @@ io.on('connection', socket => {
       socket.join("room-" + rooms[index].id);
       socket.emit('role', {role: role, room: rooms[index].id});
     }
-    console.log("Room ID: " + rooms[index].id);
-    console.log("1st: " + rooms[index].client1ID);
-    console.log("2nd: " + rooms[index].client2ID);
-    console.log("3rd: " + rooms[index].client3ID);
+
     // If there are 3 users in the room, we'll mark start as true
     if (rooms[index].client1ID != "" && rooms[index].client2ID != "" && rooms[index].client3ID != ""){
       console.log("room " + rooms[index].id + " is full, it's starting!");
